@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fergus</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
+  </head>
+  <body style="margin: 0px; overflow: hidden;">
+    <a-scene
+      artoolkit
+      embedded
+      arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; patternRatio:0.74;"
+      renderer="precision: medium; colorManagement: true; logarithmicDepthBuffer: true;"
+      loading-screen="dotsColor: white; backgroundColor: black"
+      shadow="autoUpdate: true; enabled: true;"
+
+      >
+    <!-- gltf-model="dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/" -->
+    <!-- shadow="autoUpdate: false; enabled: false;" -->
+
+      <a-assets timeout="999999">
+        <a-asset-item
+          id="model"
+          response-type="arraybuffer"
+          src="models/Howdy/2104_01 - HOWDY.gltf"
+        ></a-asset-item>
+      </a-assets>
+      <!-- src="models/Howdy/2104_01 - HOWDY.gltf" -->
+      <!-- <a-marker type="barcode" value="2" smooth="true" smooth="15"> -->
+      <a-marker type="pattern" url="markers/pattern.patt" id="marker">
+        <a-entity
+          id="model"
+          gltf-model="#model"
+          scale="5 5 5"
+          position="0 0 0"
+          rotation ="270 0 0"
+          animation-mixer
+          
+        >
+        <!-- cube-env-map="path: /environments/;
+                 extension: pic;
+                 reflectivity: 0.9;" -->
+                 <!-- <a-light type="directional" position="3 0 0" rotation="-90 0 0" target="#directionaltarget">
+                  <a-entity id="directionaltarget" position="0 0 0"></a-entity>
+              </a-light>
+                 <a-entity light="type: ambient; color: #cae6e9 "></a-entity>
+                 <a-entity light="type: directional; color: #cae6e9 ; intensity: 1" position="-0.5 1 1"></a-entity> -->
+        <!-- <a-entity light="color: #AFA; intensity: 1.5; castShadow:true;" position="-1 1 0"></a-entity> -->
+        <!-- <a-entity light="type: hemisphere; color: #33C; groundColor: #3C3; intensity: 2"></a-entity> -->
+        <!-- <a-entity light="type: spot; angle: 45"></a-entity>
+        <a-entity light="type: point; intensity: 1; distance: 2; decay: 1; color:#FFFFFF;"
+        position="2.5 2.5 -2.5"></a-entity> -->
+
+        </a-entity>
+      </a-marker>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+    <script defer>
+      document.getElementById("marker").addEventListener("markerFound", (e) => {
+        console.log("Marker Found");
+      });
+      document.getElementById("marker").addEventListener("markerLost", (e) => {
+        console.log("Marker Lost");
+      });
+    </script>
+  </body>
+</html>
