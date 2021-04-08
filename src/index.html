@@ -45,27 +45,28 @@
       artoolkit
       embedded
       arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; patternRatio:0.74;"
-      renderer="precision: medium; colorManagement: true; logarithmicDepthBuffer: true;"
+      renderer="colorManagement:true"
       loading-screen="dotsColor: white; backgroundColor: black"
-      shadow="autoUpdate: true; enabled: true;"
+      shadow="autoUpdate: false; enabled: false;"
     >
       <a-assets timeout="999999">
         <a-asset-item
           id="model"
           response-type="arraybuffer"
-          src="models/Howdy/2104_01 - HOWDY.gltf"
+          src="models/Howdy/HOWDY.gltf"
         ></a-asset-item>
       </a-assets>
       <a-marker type="pattern" url="./markers/pattern.patt" id="marker">
         <a-entity
           id="model"
           gltf-model="#model"
-          scale="20 20 20"
-          position="0 0 0"
+          scale="15 15 15"
+          position="0 0 2"
           rotation="270 0 0"
           animation-mixer
           env-map-component
         >
+          <!-- env-map-component -->
         </a-entity>
       </a-marker>
 
